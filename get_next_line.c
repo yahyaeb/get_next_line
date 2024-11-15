@@ -6,11 +6,24 @@
 /*   By: yel-bouk <yel-bouk@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:19:30 by yel-bouk          #+#    #+#             */
-/*   Updated: 2024/11/14 18:28:42 by yel-bouk         ###   ########.fr       */
+/*   Updated: 2024/11/14 18:58:22 by yel-bouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void    read_and_append(int fd, char *buffer, int *bytes_read)
+{
+    
+}
+int find_newline(const char *buffer) {
+    
+}
+
+extract_line(char *buffer, int length)
+{
+    
+}
 
 char *get_next_line(int fd)
 {

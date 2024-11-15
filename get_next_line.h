@@ -6,21 +6,21 @@
 /*   By: yel-bouk <yel-bouk@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:18:44 by yel-bouk          #+#    #+#             */
-/*   Updated: 2024/11/14 18:09:34 by yel-bouk         ###   ########.fr       */
+/*   Updated: 2024/11/14 18:54:00 by yel-bouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #ifndef GET_NEXT_LINE_H
-#define GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-#define BUFFER_SIZE 1000
+# define BUFFER_SIZE 1000
 
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <string.h>
-#include <fcntl.h>
+# include <fcntl.h>
 
 
 typedef struct s_list
