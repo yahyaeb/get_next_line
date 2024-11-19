@@ -6,47 +6,12 @@
 /*   By: yel-bouk <yel-bouk@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:19:54 by yel-bouk          #+#    #+#             */
-/*   Updated: 2024/11/14 18:05:17 by yel-bouk         ###   ########.fr       */
+/*   Updated: 2024/11/19 16:27:20 by yel-bouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-//Creates a new node for a linked list
-t_list	*ft_lstnew(void *content)
-{
-	t_list	*data;
 
-	data = malloc(sizeof(t_list));
-	if (!data)
-		return (NULL);
-	data->content = content;
-	data->next = NULL;
-	return (data);
-}
-// Deletes and frees a single node `lst` 
-//using the function `del` on the node's content.
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
-{
-	if (lst == NULL || del == NULL)
-		return ;
-	del(lst->content);
-	free(lst);
-}
-// Deletes and frees all nodes in the list 
-//pointed to by `lst`, setting `*lst` to NULL.
-void	ft_lstclear(t_list **lst, void (*del)(void*))
-{
-	t_list	*temp;
-
-	if (lst == NULL || del == NULL)
-		return ;
-	while (*lst)
-	{
-		temp = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = temp;
-	}
-}
 //Locates the first occurrence of a character in a string.
 char	*ft_strchr(const char *str, int c)
 {
@@ -63,20 +28,75 @@ char	*ft_strchr(const char *str, int c)
 		return ((char *)&str[i]);
 	return (NULL);
 }
-char	*ft_strncpy(char *dest, const char *src, size_t n)
+
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
 	size_t	i;
+	size_t	len;
 
+	len = ft_strlen(src);
 	i = 0;
-	while (src[i] && i < n)
+	if (size == 0)
+		return (len);
+	while (src[i] && i < size - 1)
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	while (i < n)
+	dest[i] = '\0';
+	return (len);
+}
+
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	size_t			i;
+	unsigned char	*s;
+	unsigned char	*d;
+
+	if (dest == src || n == 0)
+		return (dest);
+	i = 0;
+	s = (unsigned char *)src;
+	d = (unsigned char *)dest;
+	if (d < s)
 	{
-		dest[i] = '\0';
-		i++;
+		while (i < n)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
+	else if (s < d)
+	{
+		while (n-- > 0)
+		{
+			d[n] = s[n];
+		}
 	}
 	return (dest);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_strdup(const char *str)
+{
+	char	*cpy;
+	int		len;
+
+	len = ft_strlen(str) + 1;
+	cpy = malloc((len) * sizeof(char));
+	if (!cpy)
+		return (NULL);
+	ft_strlcpy(cpy, str, len);
+	return (cpy);
 }
