@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://user-images.githubusercontent.com/81205527/149212588-45d60d10-2e78-46c5-bf0c-0dc247464ad5.png" alt="Get Next Line Logo">
-  <p># Get Next Line</p>
+  <p align="center" ># Get Next Line</p>
 </p>
 
 
