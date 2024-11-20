@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yel-bouk <yel-bouk@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 16:27:43 by yel-bouk          #+#    #+#             */
-/*   Updated: 2024/11/20 22:40:51 by yel-bouk         ###   ########.fr       */
+/*   Updated: 2024/11/20 22:46:00 by yel-bouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,32 +82,32 @@ char	*final_line(char **buffer)
 // Main function to get the next line
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[4096];
 	char		*temp;
 	char		*newline_pos;
 	int			bytes_read;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= 4096)
 		return (NULL);
-	if (!buffer)
-		buffer = ft_strdup("");
+	if (!buffer[fd])
+		buffer[fd] = ft_strdup("");
 	temp = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!temp)
 		return (NULL);
-	newline_pos = ft_strchr(buffer, '\n');
+	newline_pos = ft_strchr(buffer[fd], '\n');
 	while (newline_pos == NULL)
 	{
 		bytes_read = read(fd, temp, BUFFER_SIZE);
 		if (bytes_read <= 0)
 			break ;
 		temp[bytes_read] = '\0';
-		buffer = strjoin_and_free(buffer, temp);
-		if (!buffer)
+		buffer[fd] = strjoin_and_free(buffer[fd], temp);
+		if (!buffer[fd])
 			return (NULL);
-		newline_pos = ft_strchr(buffer, '\n');
+		newline_pos = ft_strchr(buffer[fd], '\n');
 	}
 	free(temp);
-	return (final_line(&buffer));
+	return (final_line(&buffer[fd]));
 }
 
 /*
