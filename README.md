@@ -45,4 +45,3 @@ This project is written in C and requires the `gcc` compiler along with standard
 ---
 
 🎉 **Enjoy coding and happy learning!**
-```s
